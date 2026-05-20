@@ -108,6 +108,30 @@
   .fees-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .fees-col { flex: 1; min-width: 220px; }
 
+  /* ── PARTY EARNINGS PANELS ── */
+  .party-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .party-panel { border-radius: 14px; overflow: hidden; box-shadow: 0 2px 10px rgba(10,45,77,.08); }
+  .party-header { padding: 14px 18px 12px; display: flex; align-items: center; justify-content: space-between; }
+  .party-name { font-size: 13px; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+  .party-total-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .7; margin-bottom: 2px; }
+  .party-total-val { font-size: 22px; font-weight: 900; letter-spacing: -.02em; }
+  .party-body { background: #fff; padding: 4px 18px 12px; }
+  .party-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #dde3e7; font-size: 13px; }
+  .party-row:last-child { border-bottom: none; }
+  .party-row-label { color: #4a6070; flex: 1; }
+  .party-row-tag { font-size: 10px; font-weight: 700; border-radius: 4px; padding: 2px 6px; margin-left: 6px; }
+  .tag-cost { background: #fdf0f0; color: #b83232; }
+  .tag-comm { background: #e8f3f9; color: #0a2d4d; }
+  .tag-mgmt { background: #e8f5ef; color: #2e7d5e; }
+  .party-row-val { font-weight: 700; white-space: nowrap; }
+  .party-divider { display: flex; justify-content: space-between; align-items: center; padding: 10px 0 4px; border-top: 2px solid #dde3e7; margin-top: 2px; }
+  .party-divider-label { font-size: 13px; font-weight: 700; color: #0a2d4d; }
+  .party-divider-val { font-size: 16px; font-weight: 900; }
+  .party-ss .party-header { background: linear-gradient(135deg, #0a7a6e 0%, #0d9e8e 100%); color: #fff; }
+  .party-ss .party-divider-val { color: #0a7a6e; }
+  .party-fh .party-header { background: linear-gradient(135deg, #0a2d4d 0%, #1a4f7a 100%); color: #fff; }
+  .party-fh .party-divider-val { color: #0a2d4d; }
+
   /* ── COMMISSION MECHANISM ── */
   .commission-hero {
     background: linear-gradient(135deg, #0a2d4d 0%, #1a4f7a 100%);
@@ -294,6 +318,17 @@ function compute() {
   const totalProfitBase   = totalSalesBase - totalExpenses;
   const roiAtBase         = capitalForProject ? totalProfitBase / capitalForProject : 0;
 
+  // ── Party totals ──
+  // Soul Space: paid as a cost (soulSpace line) + earns sales commission (sellingCost = SS commission)
+  const soulSpaceCost       = d.generalCosts.soulSpace;          // €20,000 cost line
+  const soulSpaceCommission = sellingCost;                        // 7% of gross sales
+  const soulSpaceTotal      = soulSpaceCost + soulSpaceCommission;// total SS earns from project
+
+  // Fresh Holdings: earns project management fee + dynamic sales commission
+  const fhProjectMgmt  = d.generalCosts.projectManagement;       // €146,000 management fee
+  const fhSalesComm    = freshHoldings;                           // dynamic % of gross sales
+  const fhTotal        = fhProjectMgmt + fhSalesComm;            // total FH earns from project
+
   return {
     land, general, construction, funding, totalExpenses, capitalForProject,
     salesGross, sellingCost, freshHoldings, fhRate, totalSales, totalProfit, avgPriceSqm,
@@ -301,6 +336,8 @@ function compute() {
     profitOverCost: totalExpenses ? totalProfit/totalExpenses : 0,
     profitOverSales: totalSales ? totalProfit/totalSales : 0,
     roiAtBase,
+    soulSpaceCost, soulSpaceCommission, soulSpaceTotal,
+    fhProjectMgmt, fhSalesComm, fhTotal,
   };
 }
 
@@ -412,7 +449,7 @@ function buildHTML(c, pp) {
           <div class="b-val">${pct1(c.fhRate)}</div>
         </div>
         <div class="badge b-green">
-          <div class="b-label">FH Earnings</div>
+          <div class="b-label">FH Sales Comm</div>
           <div class="b-val">${fmt(c.freshHoldings)}</div>
         </div>
         <div class="badge b-navy">
@@ -496,12 +533,12 @@ function buildHTML(c, pp) {
       <div class="sp-sub">Before deductions</div>
     </div>
     <div class="split-box">
-      <div class="sp-label">Selling Costs (${pct(d.fees.sellingCostRate)})</div>
+      <div class="sp-label">Soul Space Commission (${pct(d.fees.sellingCostRate)})</div>
       <div class="sp-val" style="color:#b83232">−${fmt(c.sellingCost)}</div>
       <div class="sp-sub">Agency / marketing</div>
     </div>
     <div class="split-box split-fh">
-      <div class="sp-label">Fresh Holdings Commission</div>
+      <div class="sp-label">FH Commission</div>
       <div class="sp-val">${fmt(c.freshHoldings)}</div>
       <div class="sp-sub">${pct1(c.fhRate)} · dynamic rate</div>
     </div>
@@ -575,14 +612,69 @@ function buildHTML(c, pp) {
       ${cardHTML('Investor ROI (Gross)',pct(roi),'Return on capital',C.navy,true)}
     </div>
     <div class="cards-grid" style="margin-bottom:20px">
-      ${cardHTML('FH Commission Rate',pct1(c.fhRate),'Dynamic · based on ROI',C.sky,false)}
-      ${cardHTML('FH Earnings',fmt(c.freshHoldings),'Fresh Holdings commission',C.sky,false)}
+      ${cardHTML('FH Total Earnings',fmt(c.fhTotal),'Mgmt + sales commission',C.navy,false)}
+      ${cardHTML('SS Total Earnings',fmt(c.soulSpaceTotal),'Cost + sales commission','#0a7a6e',false)}
       ${cardHTML('Entrepreneur Net',fmt((c.totalProfit-c.freshHoldings)*(1-d.investor.taxRate)),'After FH & tax',C.steel,false)}
       ${cardHTML('Profit / Sales',pct(c.profitOverSales),'Net margin on revenue',C.steel,false)}
     </div>
+    <!-- Party Earnings Panels -->
+    <div class="party-grid">
+      <div class="party-panel party-fh">
+        <div class="party-header">
+          <div>
+            <div class="party-name">🏢 Fresh Holdings</div>
+            <div style="font-size:11px;opacity:.7;margin-top:2px">Our total earnings from this project</div>
+          </div>
+          <div style="text-align:right">
+            <div class="party-total-label">Total Earnings</div>
+            <div class="party-total-val">${fmt(c.fhTotal)}</div>
+          </div>
+        </div>
+        <div class="party-body">
+          <div class="party-row">
+            <span class="party-row-label">Project Management<span class="party-row-tag tag-mgmt">COST LINE</span></span>
+            <span class="party-row-val" style="color:#2e7d5e">${fmt(c.fhProjectMgmt)}</span>
+          </div>
+          <div class="party-row">
+            <span class="party-row-label">Sales Commission <span class="party-row-tag tag-comm">${pct1(c.fhRate)} · dynamic</span></span>
+            <span class="party-row-val" style="color:#0a2d4d">${fmt(c.fhSalesComm)}</span>
+          </div>
+          <div class="party-divider">
+            <span class="party-divider-label">Total Fresh Holdings</span>
+            <span class="party-divider-val">${fmt(c.fhTotal)}</span>
+          </div>
+        </div>
+      </div>
+      <div class="party-panel party-ss">
+        <div class="party-header">
+          <div>
+            <div class="party-name">🌿 Soul Space</div>
+            <div style="font-size:11px;opacity:.7;margin-top:2px">Their total earnings from this project</div>
+          </div>
+          <div style="text-align:right">
+            <div class="party-total-label">Total Earnings</div>
+            <div class="party-total-val">${fmt(c.soulSpaceTotal)}</div>
+          </div>
+        </div>
+        <div class="party-body">
+          <div class="party-row">
+            <span class="party-row-label">Cost Line (General Costs)<span class="party-row-tag tag-cost">EXPENSE</span></span>
+            <span class="party-row-val" style="color:#b83232">${fmt(c.soulSpaceCost)}</span>
+          </div>
+          <div class="party-row">
+            <span class="party-row-label">Sales Commission <span class="party-row-tag tag-comm">${pct(d.fees.sellingCostRate)}</span></span>
+            <span class="party-row-val" style="color:#0a7a6e">${fmt(c.soulSpaceCommission)}</span>
+          </div>
+          <div class="party-divider">
+            <span class="party-divider-label">Total Soul Space</span>
+            <span class="party-divider-val">${fmt(c.soulSpaceTotal)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
     ${sectionHTML('Profit Waterfall', C.navy, `
       <div class="wf-row"><span class="wf-label">Gross Sales</span><span class="wf-val pos">${fmt(c.salesGross)}</span></div>
-      <div class="wf-row"><span class="wf-label">− Selling Costs (${pct(d.fees.sellingCostRate)})</span><span class="wf-val neg">−${fmt(c.sellingCost)}</span></div>
+      <div class="wf-row"><span class="wf-label">− Soul Space Commission (${pct(d.fees.sellingCostRate)})</span><span class="wf-val neg">−${fmt(c.sellingCost)}</span></div>
       <div class="wf-row"><span class="wf-label">− Fresh Holdings Commission (${pct1(c.fhRate)} · dynamic)</span><span class="wf-val neg">−${fmt(c.freshHoldings)}</span></div>
       <div class="wf-row bold"><span class="wf-label">= Total Revenue to Project</span><span class="wf-val pos">${fmt(c.totalSales)}</span></div>
       <div class="wf-row"><span class="wf-label">− Land Costs</span><span class="wf-val neg">−${fmt(c.land)}</span></div>
@@ -615,9 +707,9 @@ function buildHTML(c, pp) {
       </div>
       <div>
         ${sectionHTML('General Costs · '+fmt(c.general),C.steel,`
-          ${editRow('generalCosts.projectManagement','Project Management',d.generalCosts.projectManagement,'€','€200/m²')}
+          ${editRow('generalCosts.projectManagement','Project Management <span style="font-size:10px;background:#e8f3f9;color:#0a2d4d;border-radius:4px;padding:1px 5px;font-weight:700">FRESH HOLDINGS</span>',d.generalCosts.projectManagement,'€','€200/m²')}
           ${editRow('generalCosts.unexpected','Unexpected (4.5%)',d.generalCosts.unexpected)}
-          ${editRow('generalCosts.soulSpace','Soul Space',d.generalCosts.soulSpace,'€','5%')}
+          ${editRow('generalCosts.soulSpace','Soul Space <span style="font-size:10px;background:#e0f5f2;color:#0a7a6e;border-radius:4px;padding:1px 5px;font-weight:700">COST</span>',d.generalCosts.soulSpace,'€','')}
           ${editRow('generalCosts.incorporationCost','Incorporation Cost',d.generalCosts.incorporationCost)}
           ${editRow('generalCosts.flightsAccommodation','Flights & Accommodation',d.generalCosts.flightsAccommodation)}
           ${editRow('generalCosts.notary','Notary',d.generalCosts.notary,'€','~approximate')}
@@ -648,7 +740,7 @@ function buildHTML(c, pp) {
   const sales = `<div class="tab-panel${d.tab==='sales'?' active':''}">
     <div class="cards-grid" style="margin-bottom:20px">
       ${cardHTML('Gross Sales',fmt(c.salesGross),'',C.navy,false)}
-      ${cardHTML('Selling Costs',fmt(c.sellingCost),pct(d.fees.sellingCostRate),C.steel,false)}
+      ${cardHTML('Soul Space Commission',fmt(c.sellingCost),pct(d.fees.sellingCostRate)+'  · SS sales','#0a7a6e',false)}
       ${cardHTML('FH Commission',fmt(c.freshHoldings),pct1(c.fhRate)+' · dynamic',C.sky,false)}
       ${cardHTML('Net Revenue',fmt(c.totalSales),'To project',C.navy,true)}
     </div>
@@ -660,7 +752,7 @@ function buildHTML(c, pp) {
     `)}
     ${sectionHTML('Fees',C.steel,`
       <div class="fees-row">
-        <div class="fees-col">${editRow('fees.sellingCostRate','Selling Cost Rate',Math.round(d.fees.sellingCostRate*100),'','%')}</div>
+        <div class="fees-col">${editRow('fees.sellingCostRate','Soul Space Commission Rate',Math.round(d.fees.sellingCostRate*100),'','%')}</div>
         <div class="fees-col">${staticRow('FH Commission Rate',pct1(c.fhRate)+' (dynamic)',C.sky)}</div>
       </div>
     `)}
@@ -686,7 +778,12 @@ function buildHTML(c, pp) {
       <div class="returns-row"><span class="returns-label">Investment per Investor</span><span class="returns-val" style="color:${C.navyMid}">${fmt(c.investmentPerInvestor)}</span></div>
       <div class="returns-row"><span class="returns-label">Profit per Investor (Gross)</span><span class="returns-val" style="color:${C.green}">${fmt(c.investorProfitGross)}</span></div>
       <div class="returns-row"><span class="returns-label">Profit per Investor (Net)</span><span class="returns-val" style="color:${C.green}">${fmt(c.investorProfitNet)}</span></div>
-      <div class="returns-row"><span class="returns-label">FH Commission (dynamic)</span><span class="returns-val" style="color:${C.sky}">${fmt(c.freshHoldings)} · ${pct1(c.fhRate)}</span></div>
+      <div class="returns-row" style="background:#f0f7ff;margin:0 -18px;padding:9px 18px"><span class="returns-label" style="font-weight:700;color:#0a2d4d">FH: Project Mgmt</span><span class="returns-val" style="color:#2e7d5e">${fmt(c.fhProjectMgmt)}</span></div>
+      <div class="returns-row" style="background:#f0f7ff;margin:0 -18px;padding:9px 18px"><span class="returns-label" style="font-weight:700;color:#0a2d4d">FH: Sales Commission (${pct1(c.fhRate)})</span><span class="returns-val" style="color:#0a2d4d">${fmt(c.fhSalesComm)}</span></div>
+      <div class="returns-row" style="background:#e8f3f9;margin:0 -18px;padding:9px 18px;border-top:2px solid #b8d6e8"><span class="returns-label" style="font-weight:900;color:#0a2d4d">FH Total Earnings</span><span class="returns-val" style="color:#0a2d4d;font-size:15px">${fmt(c.fhTotal)}</span></div>
+      <div class="returns-row" style="background:#f0faf8;margin:0 -18px;padding:9px 18px"><span class="returns-label" style="font-weight:700;color:#0a7a6e">SS: Cost Line</span><span class="returns-val" style="color:#b83232">${fmt(c.soulSpaceCost)}</span></div>
+      <div class="returns-row" style="background:#f0faf8;margin:0 -18px;padding:9px 18px"><span class="returns-label" style="font-weight:700;color:#0a7a6e">SS: Sales Commission (${pct(d.fees.sellingCostRate)})</span><span class="returns-val" style="color:#0a7a6e">${fmt(c.soulSpaceCommission)}</span></div>
+      <div class="returns-row" style="background:#e0f5f2;margin:0 -18px;padding:9px 18px;border-top:2px solid #0d9e8e44"><span class="returns-label" style="font-weight:900;color:#0a7a6e">Soul Space Total Earnings</span><span class="returns-val" style="color:#0a7a6e;font-size:15px">${fmt(c.soulSpaceTotal)}</span></div>
       <div class="returns-row"><span class="returns-label">Entrepreneur Net (after tax)</span><span class="returns-val" style="color:${C.sky}">${fmt(entNet)}</span></div>
     `)}
   </div>`;
