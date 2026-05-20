@@ -8,11 +8,9 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Lato', 'Trebuchet MS', sans-serif; background: #f2f5f7; color: #0a2d4d; min-height: 100vh; padding: 28px 16px; }
+  .wrap { max-width: 940px; margin: 0 auto; }
 
-  /* ── layout ── */
-  .wrap { max-width: 900px; margin: 0 auto; }
-
-  /* ── header ── */
+  /* header */
   .header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
   .header-left .eyebrow { font-size: 10px; color: #8fbcd4; font-weight: 800; letter-spacing: .18em; margin-bottom: 6px; }
   .header-left h1 { font-size: 30px; font-weight: 900; color: #0a2d4d; letter-spacing: -.02em; line-height: 1.1; }
@@ -24,24 +22,23 @@
   .profit-box.loss .pb-value { color: #b83232; }
   .profit-box .pb-sub { color: #a8b4bc; font-size: 11px; margin-top: 2px; }
 
-  /* ── flow bar ── */
+  /* flow bar */
   .bar-label { color: #a8b4bc; font-size: 10px; font-weight: 800; letter-spacing: .12em; margin-bottom: 8px; }
   .flow-bar { display: flex; border-radius: 10px; overflow: hidden; height: 36px; gap: 2px; }
-  .flow-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; font-weight: 700; overflow: hidden; white-space: nowrap; min-width: 2px; transition: flex .4s; }
+  .flow-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; font-weight: 700; overflow: hidden; white-space: nowrap; min-width: 2px; }
   .bar-legend { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #7d8a96; }
   .legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
 
-  /* ── tabs ── */
-  .tabs { display: flex; gap: 3px; background: #dde3e7; border-radius: 11px; padding: 4px; width: fit-content; margin-bottom: 20px; }
-  .tab-btn { background: transparent; border: none; border-radius: 8px; color: #7d8a96; padding: 8px 22px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; transition: all .15s; }
+  /* tabs */
+  .tabs { display: flex; gap: 3px; background: #dde3e7; border-radius: 11px; padding: 4px; width: fit-content; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn { background: transparent; border: none; border-radius: 8px; color: #7d8a96; padding: 8px 18px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; transition: all .15s; }
   .tab-btn.active { background: #0a2d4d; color: #fff; box-shadow: 0 2px 8px rgba(10,45,77,.25); }
 
-  /* ── tab content ── */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ── metric cards ── */
+  /* metric cards */
   .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 12px; margin-bottom: 12px; }
   .metric-card { background: #fff; border: 1px solid #dde3e7; border-radius: 13px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 2px 8px rgba(10,45,77,.05); }
   .metric-card.highlight { color: #fff; }
@@ -52,17 +49,16 @@
   .metric-card .mc-sub { font-size: 11px; color: #a8b4bc; }
   .metric-card.highlight .mc-sub { color: rgba(255,255,255,.6); }
 
-  /* ── section card ── */
+  /* section */
   .section-card { background: #fff; border-radius: 14px; border: 1px solid #dde3e7; overflow: hidden; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(10,45,77,.06); }
   .section-head { display: flex; align-items: center; gap: 10px; padding: 12px 18px; border-bottom: 1px solid rgba(0,0,0,.06); }
   .section-bar { width: 4px; height: 20px; border-radius: 2px; flex-shrink: 0; }
   .section-title { font-weight: 700; font-size: 14px; color: #0a2d4d; }
   .section-body { padding: 4px 18px 14px; }
 
-  /* ── two-col grid ── */
   .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
 
-  /* ── rows ── */
+  /* rows */
   .row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #dde3e7; gap: 8px; }
   .row:last-child { border-bottom: none; }
   .row-label { color: #4a6070; font-size: 13px; flex: 1; }
@@ -70,15 +66,13 @@
   .row-value { color: #0d3a61; font-weight: 600; font-size: 13px; cursor: pointer; background: #e8f3f9; border-radius: 7px; padding: 4px 11px; border: 1px solid #b8d6e8; min-width: 95px; text-align: right; transition: background .15s; white-space: nowrap; }
   .row-value:hover { background: #d4ecf7; }
   .row-value.editing { display: none; }
-  .row-input { background: #fff; border: 2px solid #8fbcd4; border-radius: 7px; color: #0a2d4d; padding: 3px 8px; width: 110px; text-align: right; font-size: 13px; font-family: inherit; outline: none; box-shadow: 0 0 0 3px rgba(184,214,232,.4); display: none; }
+  .row-input { background: #fff; border: 2px solid #8fbcd4; border-radius: 7px; color: #0a2d4d; padding: 3px 8px; width: 110px; text-align: right; font-size: 13px; font-family: inherit; outline: none; display: none; }
   .row-input.visible { display: block; }
   .del-btn { background: none; border: none; cursor: pointer; color: #a8b4bc; font-size: 18px; line-height: 1; padding: 0 2px; flex-shrink: 0; }
   .del-btn:hover { color: #b83232; }
-
-  /* static row (non-editable computed) */
   .row-static { color: #0a2d4d; font-weight: 800; font-size: 13px; white-space: nowrap; }
 
-  /* ── add-line UI ── */
+  /* add line */
   .add-line-btn { margin-top: 8px; background: none; border: 1px dashed #b8d6e8; border-radius: 7px; padding: 6px 14px; cursor: pointer; color: #8fbcd4; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 5px; transition: all .15s; }
   .add-line-btn:hover { background: #e8f3f9; }
   .add-form { display: none; align-items: center; gap: 6px; padding: 10px 0; border-bottom: 1px solid #dde3e7; }
@@ -89,7 +83,7 @@
   .add-form .add-ok { background: #0a2d4d; color: #fff; border: none; border-radius: 7px; padding: 5px 12px; cursor: pointer; font-family: inherit; font-weight: 700; font-size: 12px; }
   .add-form .add-cancel { background: none; border: none; cursor: pointer; color: #a8b4bc; font-size: 18px; }
 
-  /* ── waterfall ── */
+  /* waterfall */
   .wf-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #dde3e7; font-size: 13px; }
   .wf-row.bold .wf-label { font-weight: 700; color: #0a2d4d; }
   .wf-row.highlight { border-top: 2px solid #dde3e7; border-bottom: none; padding-top: 12px; }
@@ -99,60 +93,169 @@
   .wf-val.neg { color: #b83232; }
   .wf-val.bold-val { font-weight: 800; font-size: 16px; }
 
-  /* ── investor returns table ── */
+  /* returns */
   .returns-row { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid #dde3e7; font-size: 13px; }
   .returns-label { color: #4a6070; }
   .returns-val { font-weight: 700; }
 
-  /* ── floor sales ── */
+  /* floor */
   .floor-block { padding: 12px 0; border-bottom: 1px solid #dde3e7; }
-  .floor-block:last-child { border-bottom: none; }
   .floor-header { display: flex; justify-content: space-between; margin-bottom: 8px; }
   .floor-name { font-weight: 700; font-size: 13px; color: #0a2d4d; }
   .floor-total { font-weight: 800; font-size: 14px; color: #2e7d5e; }
   .floor-fields { display: flex; gap: 12px; flex-wrap: wrap; }
   .floor-field { flex: 1; min-width: 180px; }
-
-  /* ── fees row ── */
   .fees-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .fees-col { flex: 1; min-width: 220px; }
 
-  /* ── footer ── */
-  .footer { max-width: 900px; margin: 20px auto 0; text-align: center; color: #dde3e7; font-size: 10px; }
+  /* ── COMMISSION MECHANISM ── */
+  .commission-hero {
+    background: linear-gradient(135deg, #0a2d4d 0%, #1a4f7a 100%);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(10,45,77,.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .commission-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: rgba(143,188,212,.12);
+    border-radius: 50%;
+  }
+  .commission-hero-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; margin-bottom: 20px; }
+  .commission-hero h2 { font-size: 18px; font-weight: 900; letter-spacing: -.01em; margin-bottom: 4px; }
+  .commission-hero p { font-size: 12px; color: rgba(255,255,255,.65); max-width: 480px; line-height: 1.5; }
+  .commission-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+  .badge { border-radius: 8px; padding: 10px 16px; text-align: center; min-width: 100px; }
+  .badge .b-label { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; opacity: .75; margin-bottom: 4px; }
+  .badge .b-val { font-size: 18px; font-weight: 900; letter-spacing: -.01em; }
+  .badge.b-navy { background: rgba(255,255,255,.1); }
+  .badge.b-green { background: rgba(46,125,94,.35); }
+  .badge.b-red { background: rgba(184,50,50,.35); }
+  .badge.b-sky { background: rgba(143,188,212,.25); }
+
+  /* ROI gauge track */
+  .roi-track-wrap { margin-bottom: 6px; }
+  .roi-track-labels { display: flex; justify-content: space-between; font-size: 10px; color: rgba(255,255,255,.5); margin-bottom: 6px; font-weight: 700; }
+  .roi-track { position: relative; height: 10px; border-radius: 5px; background: rgba(255,255,255,.15); overflow: visible; }
+  .roi-track-fill { height: 100%; border-radius: 5px; transition: width .4s, background .4s; }
+  .roi-needle { position: absolute; top: -5px; width: 20px; height: 20px; border-radius: 50%; border: 3px solid #fff; transform: translateX(-50%); transition: left .4s; box-shadow: 0 2px 6px rgba(0,0,0,.3); }
+  .roi-threshold { position: absolute; top: -8px; bottom: -8px; width: 2px; background: rgba(255,255,255,.5); border-radius: 1px; }
+  .roi-threshold-label { position: absolute; top: -22px; transform: translateX(-50%); font-size: 9px; color: rgba(255,255,255,.75); font-weight: 800; white-space: nowrap; }
+  .roi-status { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+  .roi-status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .roi-status-text { font-size: 12px; font-weight: 700; }
+
+  /* commission slider table */
+  .commission-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  .commission-table th { color: #a8b4bc; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 6px 12px; text-align: left; border-bottom: 1px solid #dde3e7; }
+  .commission-table td { padding: 10px 12px; border-bottom: 1px solid #dde3e7; color: #4a6070; }
+  .commission-table tr:last-child td { border-bottom: none; }
+  .commission-table tr.active-tier td { background: #e8f3f9; color: #0a2d4d; font-weight: 700; }
+  .commission-table tr.active-tier td:first-child { border-left: 3px solid #8fbcd4; padding-left: 9px; }
+  .tier-badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  .tier-red { background: #fdf0f0; color: #b83232; }
+  .tier-yellow { background: #fffbeb; color: #92600a; }
+  .tier-green { background: #e8f5ef; color: #2e7d5e; }
+  .tier-gold { background: #fdf5e6; color: #7a4f0a; }
+
+  /* commission split visual */
+  .split-visual { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+  .split-box { flex: 1; min-width: 140px; background: #f2f5f7; border-radius: 12px; padding: 14px 16px; border: 1px solid #dde3e7; }
+  .split-box.split-fh { border-color: #8fbcd4; background: #e8f3f9; }
+  .split-box .sp-label { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #7d8a96; margin-bottom: 6px; }
+  .split-box.split-fh .sp-label { color: #0a2d4d; }
+  .split-box .sp-val { font-size: 20px; font-weight: 900; color: #0a2d4d; letter-spacing: -.01em; }
+  .split-box .sp-sub { font-size: 11px; color: #7d8a96; margin-top: 3px; }
+  .split-box.split-fh .sp-val { color: #0a2d4d; }
+
+  /* editable threshold params */
+  .param-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #dde3e7; flex-wrap: wrap; }
+  .param-label { color: #4a6070; font-size: 13px; flex: 1; min-width: 200px; }
+  .param-input { background: #fff; border: 1px solid #b8d6e8; border-radius: 7px; padding: 5px 10px; font-size: 13px; font-family: inherit; color: #0a2d4d; outline: none; width: 90px; text-align: right; font-weight: 600; }
+  .param-input:focus { border-color: #8fbcd4; box-shadow: 0 0 0 3px rgba(143,188,212,.25); }
+
+  .footer { max-width: 940px; margin: 20px auto 0; text-align: center; color: #dde3e7; font-size: 10px; }
 </style>
 </head>
 <body>
-
 <div class="wrap" id="app"></div>
-<div class="footer">Thermi 800 sqm · Live Financial Model · All values editable</div>
+<div class="footer">Thermi 800 sqm · Live Financial Model · Dynamic Commission Structure</div>
 
 <script>
-// ── palette ──────────────────────────────────────────────────────────────────
 const C = {
   navy:'#0a2d4d', navyMid:'#0d3a61', steel:'#7d8a96', steelLight:'#a8b4bc',
   steelXLight:'#dde3e7', sky:'#8fbcd4', skyLight:'#b8d6e8', skyXLight:'#e8f3f9',
   white:'#ffffff', green:'#2e7d5e', red:'#b83232',
 };
 
-// ── helpers ──────────────────────────────────────────────────────────────────
-const fmt = n => '€' + Math.round(n).toLocaleString('en-US');
-const pct = n => (n*100).toFixed(1)+'%';
-const uid = () => Math.random().toString(36).slice(2,8);
+const fmt  = n => '€' + Math.round(n).toLocaleString('en-US');
+const pct  = n => (n*100).toFixed(1)+'%';
+const pct1 = n => (n*100).toFixed(2)+'%';
+const uid  = () => Math.random().toString(36).slice(2,8);
 const sumExtra = arr => (arr||[]).reduce((s,r)=>s+(r.value||0),0);
+const clamp = (v,mn,mx) => Math.min(mx,Math.max(mn,v));
 
 // ── state ────────────────────────────────────────────────────────────────────
 let state = {
   tab: 'overview',
-  landCosts:        { propertyPrice:400000, purchaseTax:12360, landRegistry:2000, brokerFee:8000, engineerInspection:400, demolition:0, extra:[] },
-  generalCosts:     { notary:3500, translationDocuments:1000, lawyer:4000, unexpected:41062.5, soulSpace:20000, incorporationCost:6000, flightsAccommodation:5000, projectManagement:146000, extra:[] },
-  constructionCosts:{ sqm:730, costPerM:1250, furniture:0, extra:[] },
-  fundingCosts:     { financing:0, financingRate:0.045, extra:[] },
-  sales:            { firstFloor:{pricePerSqm:2750,sqm:292}, secondFloor:{pricePerSqm:2650,sqm:292}, thirdFloor:{pricePerSqm:2650,sqm:146}, extra:[] },
-  fees:             { sellingCostRate:0.07, freshHoldingsRate:0.05 },
-  investor:         { count:7, taxRate:0.22 },
+  landCosts:         { propertyPrice:400000, purchaseTax:12360, landRegistry:2000, brokerFee:8000, engineerInspection:400, demolition:0, extra:[] },
+  generalCosts:      { notary:3500, translationDocuments:1000, lawyer:4000, unexpected:41062.5, soulSpace:20000, incorporationCost:6000, flightsAccommodation:5000, projectManagement:146000, extra:[] },
+  constructionCosts: { sqm:730, costPerM:1250, furniture:0, extra:[] },
+  fundingCosts:      { financing:0, financingRate:0.045, extra:[] },
+  sales:             { firstFloor:{pricePerSqm:2750,sqm:292}, secondFloor:{pricePerSqm:2650,sqm:292}, thirdFloor:{pricePerSqm:2650,sqm:146}, extra:[] },
+  fees:              { sellingCostRate:0.07 },
+  investor:          { count:7, taxRate:0.22 },
+  // Dynamic commission parameters
+  commission: {
+    roiTarget:      0.35,   // 35% — the guaranteed floor for investors
+    baseRate:       0.05,   // 5% FH rate at exactly target ROI
+    minRate:        0.02,   // floor: rate if ROI is 0% or below
+    maxRate:        0.10,   // ceiling: rate at maxROI and above
+    maxROI:         0.60,   // ROI at which FH earns max commission
+  },
 };
 
-// ── compute ──────────────────────────────────────────────────────────────────
+// ── Dynamic commission calculation ───────────────────────────────────────────
+// Below target: FH rate slides linearly from minRate (at ROI=0) to baseRate (at ROI=target)
+// Above target: FH rate slides linearly from baseRate (at ROI=target) to maxRate (at ROI=maxROI)
+// The trick: FH commission is taken AFTER the investor's target return is secured first.
+// We solve iteratively: FH% affects totalSales → profit → investorROI → FH% (converges in ~5 steps)
+
+function computeDynamicFHRate(salesGross, totalExpenses, capitalForProject, comm) {
+  // Iteratively find the FH rate that satisfies the dynamic structure
+  // Start with baseRate guess, iterate
+  let fhRate = comm.baseRate;
+  for (let i = 0; i < 20; i++) {
+    const sellingCost = salesGross * state.fees.sellingCostRate;
+    const freshHoldings = salesGross * fhRate;
+    const totalSales = salesGross - sellingCost - freshHoldings;
+    const totalProfit = totalSales - totalExpenses;
+    const roi = capitalForProject > 0 ? totalProfit / capitalForProject : 0;
+    // compute what rate should be at this roi
+    let targetRate;
+    if (roi <= 0) {
+      targetRate = comm.minRate;
+    } else if (roi < comm.roiTarget) {
+      // linear: minRate → baseRate as roi goes 0 → roiTarget
+      targetRate = comm.minRate + (comm.baseRate - comm.minRate) * (roi / comm.roiTarget);
+    } else if (roi <= comm.maxROI) {
+      // linear: baseRate → maxRate as roi goes roiTarget → maxROI
+      targetRate = comm.baseRate + (comm.maxRate - comm.baseRate) * ((roi - comm.roiTarget) / (comm.maxROI - comm.roiTarget));
+    } else {
+      targetRate = comm.maxRate;
+    }
+    if (Math.abs(targetRate - fhRate) < 0.0001) break;
+    fhRate = targetRate;
+  }
+  return clamp(fhRate, comm.minRate, comm.maxRate);
+}
+
 function compute() {
   const d = state;
   const land = d.landCosts.propertyPrice + d.landCosts.purchaseTax + d.landCosts.landRegistry
@@ -164,56 +267,84 @@ function compute() {
   const funding = d.fundingCosts.financing + sumExtra(d.fundingCosts.extra);
   const totalExpenses = land + general + construction + funding;
   const capitalForProject = land + d.landCosts.landRegistry;
+
   const salesGross = d.sales.firstFloor.pricePerSqm*d.sales.firstFloor.sqm
                    + d.sales.secondFloor.pricePerSqm*d.sales.secondFloor.sqm
                    + d.sales.thirdFloor.pricePerSqm*d.sales.thirdFloor.sqm + sumExtra(d.sales.extra);
-  const sellingCost = salesGross * d.fees.sellingCostRate;
-  const freshHoldings = salesGross * d.fees.freshHoldingsRate;
-  const totalSales = salesGross - sellingCost - freshHoldings;
-  const totalProfit = totalSales - totalExpenses;
+
+  // Dynamic FH rate
+  const fhRate = computeDynamicFHRate(salesGross, totalExpenses, capitalForProject, d.commission);
+
+  const sellingCost   = salesGross * d.fees.sellingCostRate;
+  const freshHoldings = salesGross * fhRate;
+  const totalSales    = salesGross - sellingCost - freshHoldings;
+  const totalProfit   = totalSales - totalExpenses;
+
   const allSqm = d.sales.firstFloor.sqm + d.sales.secondFloor.sqm + d.sales.thirdFloor.sqm;
   const avgPriceSqm = allSqm > 0 ? Math.round(salesGross/allSqm) : 0;
+
   const investmentPerInvestor = capitalForProject / d.investor.count;
-  const investorProfitGross = totalProfit / d.investor.count;
-  const investorProfitNet = investorProfitGross * (1 - d.investor.taxRate);
-  const profitToCapitalGross = capitalForProject ? totalProfit/capitalForProject : 0;
-  return { land, general, construction, funding, totalExpenses, capitalForProject,
-           salesGross, sellingCost, freshHoldings, totalSales, totalProfit, avgPriceSqm,
-           investmentPerInvestor, investorProfitGross, investorProfitNet, profitToCapitalGross,
-           profitOverCost: totalExpenses ? totalProfit/totalExpenses : 0,
-           profitOverSales: totalSales ? totalProfit/totalSales : 0 };
+  const investorProfitGross   = totalProfit / d.investor.count;
+  const investorProfitNet     = investorProfitGross * (1 - d.investor.taxRate);
+  const profitToCapitalGross  = capitalForProject ? totalProfit / capitalForProject : 0;
+
+  // What ROI would be at base rate (for comparison)
+  const freshHoldingsBase = salesGross * d.commission.baseRate;
+  const totalSalesBase    = salesGross - sellingCost - freshHoldingsBase;
+  const totalProfitBase   = totalSalesBase - totalExpenses;
+  const roiAtBase         = capitalForProject ? totalProfitBase / capitalForProject : 0;
+
+  return {
+    land, general, construction, funding, totalExpenses, capitalForProject,
+    salesGross, sellingCost, freshHoldings, fhRate, totalSales, totalProfit, avgPriceSqm,
+    investmentPerInvestor, investorProfitGross, investorProfitNet, profitToCapitalGross,
+    profitOverCost: totalExpenses ? totalProfit/totalExpenses : 0,
+    profitOverSales: totalSales ? totalProfit/totalSales : 0,
+    roiAtBase,
+  };
+}
+
+// ── Tier helpers ──────────────────────────────────────────────────────────────
+function getTiers(comm) {
+  return [
+    { label: 'Below Floor',   roiMin: null,             roiMax: 0,               fhRate: comm.minRate,  cls:'tier-red',    desc:'ROI ≤ 0%' },
+    { label: 'Below Target',  roiMin: 0,                roiMax: comm.roiTarget,  fhRate: null,          cls:'tier-yellow', desc:`0% → ${pct(comm.roiTarget)}`, sliding:true, from:comm.minRate, to:comm.baseRate },
+    { label: 'At Target',     roiMin: comm.roiTarget,   roiMax: comm.roiTarget,  fhRate: comm.baseRate, cls:'tier-green',  desc:`Exactly ${pct(comm.roiTarget)}` },
+    { label: 'Above Target',  roiMin: comm.roiTarget,   roiMax: comm.maxROI,     fhRate: null,          cls:'tier-gold',   desc:`${pct(comm.roiTarget)} → ${pct(comm.maxROI)}+`, sliding:true, from:comm.baseRate, to:comm.maxRate },
+  ];
+}
+
+function getActiveTierIdx(roi, comm) {
+  if (roi <= 0) return 0;
+  if (roi < comm.roiTarget) return 1;
+  if (Math.abs(roi - comm.roiTarget) < 0.001) return 2;
+  return 3;
 }
 
 // ── render ───────────────────────────────────────────────────────────────────
 function render() {
-  const c = compute();
+  const c  = compute();
   const pp = c.totalProfit > 0;
-  const app = document.getElementById('app');
-  app.innerHTML = buildHTML(c, pp);
+  document.getElementById('app').innerHTML = buildHTML(c, pp);
   bindEvents(c, pp);
 }
 
-// ── editable row HTML ─────────────────────────────────────────────────────────
+// ── HTML helpers ─────────────────────────────────────────────────────────────
 function editRow(id, label, value, prefix='€', note='', deletable=false) {
   const display = prefix + Math.round(value).toLocaleString('en-US');
-  return `
-  <div class="row" data-row="${id}">
-    <span class="row-label">${label}${note ? `<span class="row-note">(${note})</span>` : ''}</span>
+  return `<div class="row" data-row="${id}">
+    <span class="row-label">${label}${note?`<span class="row-note">(${note})</span>`:''}</span>
     <span class="row-value" data-edit="${id}" title="Click to edit">${display}</span>
     <input class="row-input" data-input="${id}" value="${value}" type="number">
-    ${deletable ? `<button class="del-btn" data-del="${id}" title="Remove">×</button>` : ''}
+    ${deletable?`<button class="del-btn" data-del="${id}" title="Remove">×</button>`:''}
   </div>`;
 }
-
 function staticRow(label, value, color='') {
   return `<div class="row"><span class="row-label">${label}</span><span class="row-static" style="color:${color||C.navy}">${value}</span></div>`;
 }
-
-// ── extra lines HTML ──────────────────────────────────────────────────────────
 function extraLinesHTML(rows, section, placeholder) {
-  const rowsHTML = rows.map(r => editRow(`${section}__extra__${r.id}`, r.label, r.value, '€', '', true)).join('');
-  return `
-    ${rowsHTML}
+  const rowsHTML = rows.map(r => editRow(`${section}__extra__${r.id}`,r.label,r.value,'€','',true)).join('');
+  return `${rowsHTML}
     <div class="add-form" id="addform-${section}">
       <input class="lbl-input" id="addlbl-${section}" placeholder="${placeholder}" type="text">
       <input class="amt-input" id="addamt-${section}" placeholder="Amount" type="number">
@@ -222,11 +353,8 @@ function extraLinesHTML(rows, section, placeholder) {
     </div>
     <button class="add-line-btn" data-addbtn="${section}"><span style="font-size:16px">+</span> Add line</button>`;
 }
-
-// ── section HTML ──────────────────────────────────────────────────────────────
 function sectionHTML(title, accent, body) {
-  return `
-  <div class="section-card">
+  return `<div class="section-card">
     <div class="section-head" style="background:linear-gradient(135deg,${accent}18 0%,#fff 100%);border-bottom:1px solid ${accent}30">
       <div class="section-bar" style="background:${accent}"></div>
       <span class="section-title">${title}</span>
@@ -234,32 +362,190 @@ function sectionHTML(title, accent, body) {
     <div class="section-body">${body}</div>
   </div>`;
 }
-
-// ── metric card HTML ──────────────────────────────────────────────────────────
 function cardHTML(label, value, sub, accent, highlight) {
   const bg = highlight ? accent : '#fff';
   const border = highlight ? accent : C.steelXLight;
   const shadow = highlight ? `0 4px 18px ${accent}50` : '0 2px 8px rgba(10,45,77,.05)';
-  return `
-  <div class="metric-card${highlight?' highlight':''}" style="background:${bg};border-color:${border};box-shadow:${shadow}">
+  return `<div class="metric-card${highlight?' highlight':''}" style="background:${bg};border-color:${border};box-shadow:${shadow}">
     <span class="mc-label">${label}</span>
     <span class="mc-value">${value}</span>
-    ${sub ? `<span class="mc-sub">${sub}</span>` : ''}
+    ${sub?`<span class="mc-sub">${sub}</span>`:''}
   </div>`;
 }
 
-// ── build full HTML ───────────────────────────────────────────────────────────
+// ── main HTML builder ─────────────────────────────────────────────────────────
 function buildHTML(c, pp) {
   const d = state;
-  const tabs = ['overview','costs','sales','investor'];
+  const comm = d.commission;
+  const roi = c.profitToCapitalGross;
+  const tierIdx = getActiveTierIdx(roi, comm);
+  const tiers = getTiers(comm);
 
-  // header
+  // ROI gauge
+  const gaugeMax = Math.max(comm.maxROI * 1.2, roi * 1.1, 0.5);
+  const needlePct = clamp(roi / gaugeMax * 100, 0, 100);
+  const thresholdPct = clamp(comm.roiTarget / gaugeMax * 100, 0, 100);
+  const fillColor = roi < 0 ? '#b83232' : roi < comm.roiTarget ? '#e08c30' : '#2e7d5e';
+  const fillWidth = clamp(roi / gaugeMax * 100, 0, 100);
+
+  const tierClsColors = { 'tier-red':'#b83232', 'tier-yellow':'#b87a20', 'tier-green':'#2e7d5e', 'tier-gold':'#9a6010' };
+  const activeTierColor = tierClsColors[tiers[tierIdx].cls];
+  const statusMsg = tierIdx === 0 ? 'ROI below zero — commission at floor rate'
+    : tierIdx === 1 ? `ROI below ${pct(comm.roiTarget)} target — commission sliding up to protect investors`
+    : tierIdx === 2 ? `ROI exactly at ${pct(comm.roiTarget)} target — base commission applies`
+    : `ROI exceeds ${pct(comm.roiTarget)} target — Fresh Holdings earns performance bonus`;
+
+  const commissionHero = `
+  <div class="commission-hero">
+    <div class="commission-hero-top">
+      <div>
+        <h2>Dynamic Commission Structure</h2>
+        <p>Fresh Holdings' commission slides automatically based on investor ROI. Below ${pct(comm.roiTarget)}, our rate reduces to protect the investor floor. Above ${pct(comm.roiTarget)}, we earn a performance bonus for outperforming.</p>
+      </div>
+      <div class="commission-badges">
+        <div class="badge b-navy">
+          <div class="b-label">Investor ROI</div>
+          <div class="b-val" style="color:${fillColor}">${pct(roi)}</div>
+        </div>
+        <div class="badge b-sky">
+          <div class="b-label">FH Rate</div>
+          <div class="b-val">${pct1(c.fhRate)}</div>
+        </div>
+        <div class="badge b-green">
+          <div class="b-label">FH Earnings</div>
+          <div class="b-val">${fmt(c.freshHoldings)}</div>
+        </div>
+        <div class="badge b-navy">
+          <div class="b-label">Target ROI</div>
+          <div class="b-val">${pct(comm.roiTarget)}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="roi-track-wrap">
+      <div class="roi-track-labels">
+        <span>0%</span>
+        <span>${pct(comm.roiTarget)} target</span>
+        <span>${pct(gaugeMax)}</span>
+      </div>
+      <div class="roi-track">
+        <div class="roi-track-fill" style="width:${fillWidth}%;background:${fillColor}"></div>
+        <div class="roi-threshold" style="left:${thresholdPct}%">
+          <div class="roi-threshold-label">${pct(comm.roiTarget)}</div>
+        </div>
+        <div class="roi-needle" style="left:${needlePct}%;background:${fillColor}"></div>
+      </div>
+    </div>
+    <div class="roi-status">
+      <div class="roi-status-dot" style="background:${activeTierColor}"></div>
+      <span class="roi-status-text" style="color:rgba(255,255,255,.9)">${statusMsg}</span>
+    </div>
+  </div>`;
+
+  // tier table
+  const tierTable = `
+  <table class="commission-table">
+    <thead>
+      <tr>
+        <th>Scenario</th>
+        <th>Investor ROI Range</th>
+        <th>FH Commission Rate</th>
+        <th>FH Earnings (est.)</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="${tierIdx===0?'active-tier':''}">
+        <td><span class="tier-badge tier-red">Below Floor</span></td>
+        <td>ROI ≤ 0%</td>
+        <td>${pct1(comm.minRate)} (floor)</td>
+        <td style="color:#a8b4bc">—</td>
+        <td>${tierIdx===0?'<strong>← Current</strong>':''}</td>
+      </tr>
+      <tr class="${tierIdx===1?'active-tier':''}">
+        <td><span class="tier-badge tier-yellow">Ramp Up</span></td>
+        <td>0% → ${pct(comm.roiTarget)}</td>
+        <td>${pct1(comm.minRate)} → ${pct1(comm.baseRate)} (sliding)</td>
+        <td style="color:#a8b4bc">proportional</td>
+        <td>${tierIdx===1?`<strong>← Current (${pct1(c.fhRate)})</strong>`:''}</td>
+      </tr>
+      <tr class="${tierIdx===2?'active-tier':''}">
+        <td><span class="tier-badge tier-green">On Target</span></td>
+        <td>= ${pct(comm.roiTarget)}</td>
+        <td>${pct1(comm.baseRate)} (base)</td>
+        <td>${fmt(c.salesGross * comm.baseRate)}</td>
+        <td>${tierIdx===2?'<strong>← Current</strong>':''}</td>
+      </tr>
+      <tr class="${tierIdx===3?'active-tier':''}">
+        <td><span class="tier-badge tier-gold">Outperform</span></td>
+        <td>${pct(comm.roiTarget)} → ${pct(comm.maxROI)}+</td>
+        <td>${pct1(comm.baseRate)} → ${pct1(comm.maxRate)} (sliding)</td>
+        <td>${tierIdx===3?`<strong style="color:#2e7d5e">${fmt(c.freshHoldings)}</strong>`:fmt(c.salesGross * comm.maxRate)+' max'}</td>
+        <td>${tierIdx===3?`<strong>← Current (${pct1(c.fhRate)})</strong>`:''}</td>
+      </tr>
+    </tbody>
+  </table>`;
+
+  // split summary
+  const entNet = (c.totalProfit - c.freshHoldings) * (1 - d.investor.taxRate);
+  const splitVisual = `
+  <div class="split-visual">
+    <div class="split-box">
+      <div class="sp-label">Gross Sales</div>
+      <div class="sp-val">${fmt(c.salesGross)}</div>
+      <div class="sp-sub">Before deductions</div>
+    </div>
+    <div class="split-box">
+      <div class="sp-label">Selling Costs (${pct(d.fees.sellingCostRate)})</div>
+      <div class="sp-val" style="color:#b83232">−${fmt(c.sellingCost)}</div>
+      <div class="sp-sub">Agency / marketing</div>
+    </div>
+    <div class="split-box split-fh">
+      <div class="sp-label">Fresh Holdings Commission</div>
+      <div class="sp-val">${fmt(c.freshHoldings)}</div>
+      <div class="sp-sub">${pct1(c.fhRate)} · dynamic rate</div>
+    </div>
+    <div class="split-box">
+      <div class="sp-label">Net to Project</div>
+      <div class="sp-val" style="color:#2e7d5e">${fmt(c.totalSales)}</div>
+      <div class="sp-sub">Distributed to investors</div>
+    </div>
+  </div>`;
+
+  // editable params
+  const paramsSection = sectionHTML('Commission Parameters', C.sky, `
+    <div style="padding:4px 0 8px;color:#7d8a96;font-size:12px;line-height:1.6">
+      Adjust the thresholds and rates. The commission rate recalculates automatically on every change.
+    </div>
+    <div class="param-row">
+      <span class="param-label"><strong>Target ROI for investors</strong><br><span style="font-size:11px;color:#a8b4bc">Below this, FH rate slides down. Above this, FH earns a bonus.</span></span>
+      <input class="param-input" id="param-roiTarget" type="number" step="1" value="${Math.round(comm.roiTarget*100)}"><span style="color:#7d8a96;font-size:13px">%</span>
+    </div>
+    <div class="param-row">
+      <span class="param-label"><strong>Base commission rate</strong> (at exactly target ROI)<br><span style="font-size:11px;color:#a8b4bc">FH earns this when investors land precisely at the target.</span></span>
+      <input class="param-input" id="param-baseRate" type="number" step="0.5" value="${(comm.baseRate*100).toFixed(1)}"><span style="color:#7d8a96;font-size:13px">%</span>
+    </div>
+    <div class="param-row">
+      <span class="param-label"><strong>Floor commission rate</strong> (ROI ≤ 0%)<br><span style="font-size:11px;color:#a8b4bc">Minimum rate FH receives even in a loss scenario.</span></span>
+      <input class="param-input" id="param-minRate" type="number" step="0.5" value="${(comm.minRate*100).toFixed(1)}"><span style="color:#7d8a96;font-size:13px">%</span>
+    </div>
+    <div class="param-row">
+      <span class="param-label"><strong>Maximum commission rate</strong><br><span style="font-size:11px;color:#a8b4bc">FH rate cap — reached at the outperformance ceiling.</span></span>
+      <input class="param-input" id="param-maxRate" type="number" step="0.5" value="${(comm.maxRate*100).toFixed(1)}"><span style="color:#7d8a96;font-size:13px">%</span>
+    </div>
+    <div class="param-row">
+      <span class="param-label"><strong>Outperformance ceiling ROI</strong><br><span style="font-size:11px;color:#a8b4bc">ROI at which FH earns the maximum rate.</span></span>
+      <input class="param-input" id="param-maxROI" type="number" step="1" value="${Math.round(comm.maxROI*100)}"><span style="color:#7d8a96;font-size:13px">%</span>
+    </div>
+  `);
+
+  // ── header ──
   const header = `
   <div class="header">
     <div class="header-left">
-      <div class="eyebrow">REAL ESTATE ANALYSIS</div>
+      <div class="eyebrow">REAL ESTATE ANALYSIS · FRESH HOLDINGS</div>
       <h1>Thermi · 800 sqm Plot</h1>
-      <div class="subtitle">Click values to edit · + Add line to extend any section</div>
+      <div class="subtitle">Click values to edit · Dynamic commission adjusts to investor ROI</div>
     </div>
     <div class="profit-box${pp?'':' loss'}">
       <div class="pb-label">NET PROJECT PROFIT</div>
@@ -277,42 +563,40 @@ function buildHTML(c, pp) {
     </div>
   </div>`;
 
-  // tabs
-  const tabsHTML = `<div class="tabs">${tabs.map(t=>`<button class="tab-btn${t===d.tab?' active':''}" data-tab="${t}">${t}</button>`).join('')}</div>`;
+  const tabs = ['overview','costs','sales','investor','commission'];
+  const tabsHTML = `<div class="tabs">${tabs.map(t=>`<button class="tab-btn${t===d.tab?' active':''}" data-tab="${t}">${t==='commission'?'⚙ Commission':t}</button>`).join('')}</div>`;
 
   // ── overview ──
-  const overview = `
-  <div class="tab-panel${d.tab==='overview'?' active':''}">
+  const overview = `<div class="tab-panel${d.tab==='overview'?' active':''}">
     <div class="cards-grid">
-      ${cardHTML('Total Expenses', fmt(c.totalExpenses), 'All cost categories', C.navy, false)}
-      ${cardHTML('Total Revenue', fmt(c.totalSales), 'After selling costs & fees', C.green, false)}
-      ${cardHTML('Capital Required', fmt(c.capitalForProject), 'Upfront investment needed', C.sky, false)}
-      ${cardHTML('ROI (Gross)', pct(c.profitToCapitalGross), 'Return on capital', C.navy, true)}
+      ${cardHTML('Total Expenses',fmt(c.totalExpenses),'All cost categories',C.navy,false)}
+      ${cardHTML('Total Revenue',fmt(c.totalSales),'After selling costs & FH commission',C.green,false)}
+      ${cardHTML('Capital Required',fmt(c.capitalForProject),'Upfront investment needed',C.sky,false)}
+      ${cardHTML('Investor ROI (Gross)',pct(roi),'Return on capital',C.navy,true)}
     </div>
     <div class="cards-grid" style="margin-bottom:20px">
-      ${cardHTML('Profit / Cost', pct(c.profitOverCost), 'Net profit over total cost', C.steel, false)}
-      ${cardHTML('Profit / Sales', pct(c.profitOverSales), 'Net margin on revenue', C.sky, false)}
-      ${cardHTML('Avg Price / sqm', '€'+c.avgPriceSqm.toLocaleString(), 'Weighted across floors', C.sky, false)}
-      ${cardHTML('Build Area', d.constructionCosts.sqm+' m²', '@€'+d.constructionCosts.costPerM+'/m²', C.steel, false)}
+      ${cardHTML('FH Commission Rate',pct1(c.fhRate),'Dynamic · based on ROI',C.sky,false)}
+      ${cardHTML('FH Earnings',fmt(c.freshHoldings),'Fresh Holdings commission',C.sky,false)}
+      ${cardHTML('Entrepreneur Net',fmt((c.totalProfit-c.freshHoldings)*(1-d.investor.taxRate)),'After FH & tax',C.steel,false)}
+      ${cardHTML('Profit / Sales',pct(c.profitOverSales),'Net margin on revenue',C.steel,false)}
     </div>
     ${sectionHTML('Profit Waterfall', C.navy, `
       <div class="wf-row"><span class="wf-label">Gross Sales</span><span class="wf-val pos">${fmt(c.salesGross)}</span></div>
-      <div class="wf-row"><span class="wf-label">− Selling Costs (7%)</span><span class="wf-val neg">-${fmt(c.sellingCost)}</span></div>
-      <div class="wf-row"><span class="wf-label">− Fresh Holdings (5%)</span><span class="wf-val neg">-${fmt(c.freshHoldings)}</span></div>
-      <div class="wf-row bold"><span class="wf-label">= Total Revenue</span><span class="wf-val pos">${fmt(c.totalSales)}</span></div>
-      <div class="wf-row"><span class="wf-label">− Land Costs</span><span class="wf-val neg">-${fmt(c.land)}</span></div>
-      <div class="wf-row"><span class="wf-label">− General Costs</span><span class="wf-val neg">-${fmt(c.general)}</span></div>
-      <div class="wf-row"><span class="wf-label">− Construction Costs</span><span class="wf-val neg">-${fmt(c.construction)}</span></div>
+      <div class="wf-row"><span class="wf-label">− Selling Costs (${pct(d.fees.sellingCostRate)})</span><span class="wf-val neg">−${fmt(c.sellingCost)}</span></div>
+      <div class="wf-row"><span class="wf-label">− Fresh Holdings Commission (${pct1(c.fhRate)} · dynamic)</span><span class="wf-val neg">−${fmt(c.freshHoldings)}</span></div>
+      <div class="wf-row bold"><span class="wf-label">= Total Revenue to Project</span><span class="wf-val pos">${fmt(c.totalSales)}</span></div>
+      <div class="wf-row"><span class="wf-label">− Land Costs</span><span class="wf-val neg">−${fmt(c.land)}</span></div>
+      <div class="wf-row"><span class="wf-label">− General Costs</span><span class="wf-val neg">−${fmt(c.general)}</span></div>
+      <div class="wf-row"><span class="wf-label">− Construction Costs</span><span class="wf-val neg">−${fmt(c.construction)}</span></div>
       <div class="wf-row bold highlight"><span class="wf-label">= Net Project Profit</span><span class="wf-val bold-val ${pp?'pos':'neg'}">${fmt(c.totalProfit)}</span></div>
     `)}
   </div>`;
 
   // ── costs ──
-  const costs = `
-  <div class="tab-panel${d.tab==='costs'?' active':''}">
+  const costs = `<div class="tab-panel${d.tab==='costs'?' active':''}">
     <div class="two-col">
       <div>
-        ${sectionHTML('Land Costs · '+fmt(c.land), C.navy, `
+        ${sectionHTML('Land Costs · '+fmt(c.land),C.navy,`
           ${editRow('landCosts.propertyPrice','Property Price',d.landCosts.propertyPrice,'€','800 sqm @ €500/sqm')}
           ${editRow('landCosts.purchaseTax','Purchase Tax (FMA)',d.landCosts.purchaseTax,'€','3.09%')}
           ${editRow('landCosts.landRegistry','Land Registry',d.landCosts.landRegistry)}
@@ -321,16 +605,16 @@ function buildHTML(c, pp) {
           ${editRow('landCosts.demolition','Demolition',d.landCosts.demolition)}
           ${extraLinesHTML(d.landCosts.extra,'landCosts','e.g. Survey fee')}
         `)}
-        ${sectionHTML('Construction · '+fmt(c.construction), C.sky, `
+        ${sectionHTML('Construction · '+fmt(c.construction),C.sky,`
           ${editRow('constructionCosts.sqm','Build Area (sqm)',d.constructionCosts.sqm,'')}
           ${editRow('constructionCosts.costPerM','Cost per m²',d.constructionCosts.costPerM)}
-          ${staticRow('Contractor Total', fmt(d.constructionCosts.sqm*d.constructionCosts.costPerM))}
+          ${staticRow('Contractor Total',fmt(d.constructionCosts.sqm*d.constructionCosts.costPerM))}
           ${editRow('constructionCosts.furniture','Furniture',d.constructionCosts.furniture,'€','No need')}
           ${extraLinesHTML(d.constructionCosts.extra,'constructionCosts','e.g. HVAC upgrade')}
         `)}
       </div>
       <div>
-        ${sectionHTML('General Costs · '+fmt(c.general), C.steel, `
+        ${sectionHTML('General Costs · '+fmt(c.general),C.steel,`
           ${editRow('generalCosts.projectManagement','Project Management',d.generalCosts.projectManagement,'€','€200/m²')}
           ${editRow('generalCosts.unexpected','Unexpected (4.5%)',d.generalCosts.unexpected)}
           ${editRow('generalCosts.soulSpace','Soul Space',d.generalCosts.soulSpace,'€','5%')}
@@ -341,9 +625,9 @@ function buildHTML(c, pp) {
           ${editRow('generalCosts.translationDocuments','Translation',d.generalCosts.translationDocuments)}
           ${extraLinesHTML(d.generalCosts.extra,'generalCosts','e.g. Marketing')}
         `)}
-        ${sectionHTML('Funding Costs', C.skyLight, `
+        ${sectionHTML('Funding Costs',C.skyLight,`
           ${editRow('fundingCosts.financing','Financing',d.fundingCosts.financing,'€','4.5% rate')}
-          ${staticRow('Capital Required', fmt(c.capitalForProject))}
+          ${staticRow('Capital Required',fmt(c.capitalForProject))}
           ${extraLinesHTML(d.fundingCosts.extra,'fundingCosts','e.g. Guarantee fee')}
         `)}
       </div>
@@ -353,85 +637,87 @@ function buildHTML(c, pp) {
   // ── sales ──
   const floorHTML = (label, key) => {
     const fl = d.sales[key];
-    return `
-    <div class="floor-block">
-      <div class="floor-header">
-        <span class="floor-name">${label}</span>
-        <span class="floor-total" id="floortotal-${key}">${fmt(fl.pricePerSqm*fl.sqm)}</span>
-      </div>
+    return `<div class="floor-block">
+      <div class="floor-header"><span class="floor-name">${label}</span><span class="floor-total">${fmt(fl.pricePerSqm*fl.sqm)}</span></div>
       <div class="floor-fields">
         <div class="floor-field">${editRow(`sales.${key}.pricePerSqm`,'Price / sqm',fl.pricePerSqm)}</div>
         <div class="floor-field">${editRow(`sales.${key}.sqm`,'Area (sqm)',fl.sqm,'')}</div>
       </div>
     </div>`;
   };
-
-  const sales = `
-  <div class="tab-panel${d.tab==='sales'?' active':''}">
+  const sales = `<div class="tab-panel${d.tab==='sales'?' active':''}">
     <div class="cards-grid" style="margin-bottom:20px">
-      ${cardHTML('Gross Sales', fmt(c.salesGross), '', C.navy, false)}
-      ${cardHTML('Selling Costs', fmt(c.sellingCost), pct(d.fees.sellingCostRate), C.steel, false)}
-      ${cardHTML('Fresh Holdings', fmt(c.freshHoldings), pct(d.fees.freshHoldingsRate), C.steel, false)}
-      ${cardHTML('Net Revenue', fmt(c.totalSales), '', C.navy, true)}
+      ${cardHTML('Gross Sales',fmt(c.salesGross),'',C.navy,false)}
+      ${cardHTML('Selling Costs',fmt(c.sellingCost),pct(d.fees.sellingCostRate),C.steel,false)}
+      ${cardHTML('FH Commission',fmt(c.freshHoldings),pct1(c.fhRate)+' · dynamic',C.sky,false)}
+      ${cardHTML('Net Revenue',fmt(c.totalSales),'To project',C.navy,true)}
     </div>
-    ${sectionHTML('Sales by Floor', C.navy, `
+    ${sectionHTML('Sales by Floor',C.navy,`
       ${floorHTML('First Floor','firstFloor')}
       ${floorHTML('Second Floor','secondFloor')}
       ${floorHTML('Third Floor','thirdFloor')}
       ${extraLinesHTML(d.sales.extra,'sales','e.g. Parking space')}
     `)}
-    ${sectionHTML('Fees & Deductions', C.steel, `
+    ${sectionHTML('Fees',C.steel,`
       <div class="fees-row">
         <div class="fees-col">${editRow('fees.sellingCostRate','Selling Cost Rate',Math.round(d.fees.sellingCostRate*100),'','%')}</div>
-        <div class="fees-col">${editRow('fees.freshHoldingsRate','Fresh Holdings Rate',Math.round(d.fees.freshHoldingsRate*100),'','%')}</div>
+        <div class="fees-col">${staticRow('FH Commission Rate',pct1(c.fhRate)+' (dynamic)',C.sky)}</div>
       </div>
     `)}
   </div>`;
 
   // ── investor ──
-  const investor = `
-  <div class="tab-panel${d.tab==='investor'?' active':''}">
+  const investor = `<div class="tab-panel${d.tab==='investor'?' active':''}">
     <div class="cards-grid" style="margin-bottom:20px">
-      ${cardHTML('# of Investors', d.investor.count, '', C.steel, false)}
-      ${cardHTML('Investment / Investor', fmt(c.investmentPerInvestor), '', C.sky, false)}
-      ${cardHTML('Profit / Investor (Gross)', fmt(c.investorProfitGross), '', C.navy, false)}
-      ${cardHTML('Profit / Investor (Net)', fmt(c.investorProfitNet), 'After '+Math.round(d.investor.taxRate*100)+'% tax', C.navy, true)}
+      ${cardHTML('# of Investors',d.investor.count,'',C.steel,false)}
+      ${cardHTML('Investment / Investor',fmt(c.investmentPerInvestor),'',C.sky,false)}
+      ${cardHTML('Profit / Investor (Gross)',fmt(c.investorProfitGross),'',C.navy,false)}
+      ${cardHTML('Profit / Investor (Net)',fmt(c.investorProfitNet),'After '+Math.round(d.investor.taxRate*100)+'% tax',C.navy,true)}
     </div>
-    ${sectionHTML('Investor Parameters', C.steel, `
+    ${sectionHTML('Investor Parameters',C.steel,`
       ${editRow('investor.count','Number of Investors',d.investor.count,'')}
       ${editRow('investor.taxRate_pct','Tax Rate',Math.round(d.investor.taxRate*100),'','%')}
     `)}
-    ${sectionHTML('Returns Summary', C.navy, `
+    ${sectionHTML('Returns Summary',C.navy,`
       <div class="returns-row"><span class="returns-label">Total Project Profit</span><span class="returns-val" style="color:${pp?C.green:C.red}">${fmt(c.totalProfit)}</span></div>
-      <div class="returns-row"><span class="returns-label">ROI on Capital (Gross)</span><span class="returns-val" style="color:${C.green}">${pct(c.profitToCapitalGross)}</span></div>
+      <div class="returns-row"><span class="returns-label">Investor ROI (Gross)</span><span class="returns-val" style="color:${roi>=comm.roiTarget?C.green:C.red}">${pct(roi)} ${roi>=comm.roiTarget?'✓ above target':'⚠ below target'}</span></div>
+      <div class="returns-row"><span class="returns-label">Target ROI</span><span class="returns-val" style="color:${C.navy}">${pct(comm.roiTarget)}</span></div>
       <div class="returns-row"><span class="returns-label">Capital Required</span><span class="returns-val" style="color:${C.navy}">${fmt(c.capitalForProject)}</span></div>
       <div class="returns-row"><span class="returns-label">Investment per Investor</span><span class="returns-val" style="color:${C.navyMid}">${fmt(c.investmentPerInvestor)}</span></div>
       <div class="returns-row"><span class="returns-label">Profit per Investor (Gross)</span><span class="returns-val" style="color:${C.green}">${fmt(c.investorProfitGross)}</span></div>
       <div class="returns-row"><span class="returns-label">Profit per Investor (Net)</span><span class="returns-val" style="color:${C.green}">${fmt(c.investorProfitNet)}</span></div>
-      <div class="returns-row"><span class="returns-label">Fresh Holdings Share</span><span class="returns-val" style="color:${C.steel}">${fmt(c.freshHoldings)}</span></div>
-      <div class="returns-row"><span class="returns-label">Entrepreneur Net</span><span class="returns-val" style="color:${C.sky}">${fmt((c.totalProfit-c.freshHoldings)*(1-d.investor.taxRate))}</span></div>
+      <div class="returns-row"><span class="returns-label">FH Commission (dynamic)</span><span class="returns-val" style="color:${C.sky}">${fmt(c.freshHoldings)} · ${pct1(c.fhRate)}</span></div>
+      <div class="returns-row"><span class="returns-label">Entrepreneur Net (after tax)</span><span class="returns-val" style="color:${C.sky}">${fmt(entNet)}</span></div>
     `)}
   </div>`;
 
-  return header + tabsHTML + `<div>${overview}${costs}${sales}${investor}</div>`;
+  // ── commission tab ──
+  const commissionTab = `<div class="tab-panel${d.tab==='commission'?' active':''}">
+    ${commissionHero}
+    ${sectionHTML('Tier Breakdown', C.navy, tierTable)}
+    ${sectionHTML('Revenue Split at Current ROI', C.sky, splitVisual)}
+    ${paramsSection}
+  </div>`;
+
+  return header + tabsHTML + `<div>${overview}${costs}${sales}${investor}${commissionTab}</div>`;
 }
 
 // ── bind events ───────────────────────────────────────────────────────────────
 function bindEvents(c, pp) {
-  // draw flow bar
+  // flow bar
   const bar = document.getElementById('flowbar');
   if (bar) {
     const segs = [
-      {label:'Land', value:c.land, color:C.navy},
-      {label:'General', value:c.general, color:C.steel},
-      {label:'Construction', value:c.construction, color:C.sky},
-      {label:'Funding', value:Math.max(c.funding,1), color:C.skyLight},
+      {label:'Land',value:c.land,color:C.navy},
+      {label:'General',value:c.general,color:C.steel},
+      {label:'Construction',value:c.construction,color:C.sky},
+      {label:'Funding',value:Math.max(c.funding,1),color:C.skyLight},
     ];
     const total = segs.reduce((s,i)=>s+i.value,0);
     bar.innerHTML = segs.map(s=>`<div class="flow-seg" style="flex:${s.value/total};background:${s.color}" title="${s.label}: ${fmt(s.value)}">${(s.value/total)>0.08?s.label:''}</div>`).join('');
   }
 
-  // tab switching
+  // tabs
   document.querySelectorAll('[data-tab]').forEach(btn => {
     btn.addEventListener('click', () => { state.tab = btn.dataset.tab; render(); });
   });
@@ -440,78 +726,77 @@ function bindEvents(c, pp) {
   document.querySelectorAll('[data-edit]').forEach(span => {
     span.addEventListener('click', () => {
       const id = span.dataset.edit;
-      const input = document.querySelector(`[data-input="${id}"]`);
       span.classList.add('editing');
+      const input = document.querySelector(`[data-input="${id}"]`);
       if (input) { input.classList.add('visible'); input.focus(); input.select(); }
     });
   });
-
   document.querySelectorAll('[data-input]').forEach(input => {
     const id = input.dataset.input;
     const commit = () => {
       const val = parseFloat(input.value);
-      if (!isNaN(val)) applyValue(id, val);
-      else render();
+      if (!isNaN(val)) applyValue(id, val); else render();
     };
     input.addEventListener('blur', commit);
-    input.addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); commit(); } if (e.key==='Escape') render(); });
+    input.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();commit();} if(e.key==='Escape')render(); });
   });
 
-  // delete extra lines
+  // delete
   document.querySelectorAll('[data-del]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const id = btn.dataset.del; // format: "section__extra__rowid"
-      const [sec,,rowId] = id.split('__');
-      if (sec === 'sales') {
-        state.sales.extra = state.sales.extra.filter(r => r.id !== rowId);
-      } else {
-        state[sec].extra = state[sec].extra.filter(r => r.id !== rowId);
-      }
+      const [sec,,rowId] = btn.dataset.del.split('__');
+      if (sec==='sales') state.sales.extra = state.sales.extra.filter(r=>r.id!==rowId);
+      else state[sec].extra = state[sec].extra.filter(r=>r.id!==rowId);
       render();
     });
   });
 
-  // add line buttons
+  // add line
   document.querySelectorAll('[data-addbtn]').forEach(btn => {
     btn.addEventListener('click', () => {
       const sec = btn.dataset.addbtn;
-      const form = document.getElementById('addform-'+sec);
-      if (form) { form.classList.add('visible'); btn.style.display='none'; document.getElementById('addlbl-'+sec)?.focus(); }
+      document.getElementById('addform-'+sec)?.classList.add('visible');
+      btn.style.display='none';
+      document.getElementById('addlbl-'+sec)?.focus();
     });
   });
-
   document.querySelectorAll('[data-addok]').forEach(btn => {
     btn.addEventListener('click', () => {
       const sec = btn.dataset.addok;
       const lbl = document.getElementById('addlbl-'+sec)?.value.trim();
       const amt = parseFloat(document.getElementById('addamt-'+sec)?.value);
       if (lbl && !isNaN(amt)) {
-        const row = { id: uid(), label: lbl, value: amt };
-        if (sec === 'sales') state.sales.extra.push(row);
-        else state[sec].extra.push(row);
+        const row = {id:uid(),label:lbl,value:amt};
+        if (sec==='sales') state.sales.extra.push(row); else state[sec].extra.push(row);
         render();
       }
     });
   });
-
-  document.querySelectorAll('[data-addcancel]').forEach(btn => {
-    btn.addEventListener('click', () => render());
-  });
-
-  // allow pressing Enter in amount field to add
+  document.querySelectorAll('[data-addcancel]').forEach(btn => btn.addEventListener('click', render));
   document.querySelectorAll('.amt-input').forEach(input => {
     input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        const sec = input.id.replace('addamt-','');
-        document.querySelector(`[data-addok="${sec}"]`)?.click();
-      }
+      if (e.key==='Enter') document.querySelector(`[data-addok="${input.id.replace('addamt-','')}"]`)?.click();
     });
+  });
+
+  // commission params
+  ['roiTarget','baseRate','minRate','maxRate','maxROI'].forEach(key => {
+    const el = document.getElementById('param-'+key);
+    if (!el) return;
+    const commit = () => {
+      const v = parseFloat(el.value);
+      if (!isNaN(v) && v >= 0 && v <= 100) {
+        state.commission[key] = v / 100;
+        render();
+      }
+    };
+    el.addEventListener('blur', commit);
+    el.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();commit();} });
   });
 }
 
-// ── apply a value change ──────────────────────────────────────────────────────
+// ── apply value ───────────────────────────────────────────────────────────────
 function applyValue(id, val) {
-  // handle extra row edits: "section__extra__rowId"
   if (id.includes('__extra__')) {
     const [sec,,rowId] = id.split('__');
     const target = sec==='sales' ? state.sales.extra : state[sec].extra;
@@ -519,14 +804,9 @@ function applyValue(id, val) {
     if (row) row.value = val;
     render(); return;
   }
-
-  // special cases
-  if (id === 'investor.taxRate_pct') { state.investor.taxRate = val/100; render(); return; }
-  if (id === 'fees.sellingCostRate') { state.fees.sellingCostRate = val/100; render(); return; }
-  if (id === 'fees.freshHoldingsRate') { state.fees.freshHoldingsRate = val/100; render(); return; }
-  if (id === 'investor.count') { state.investor.count = Math.max(1,Math.round(val)); render(); return; }
-
-  // deep path e.g. "landCosts.propertyPrice" or "sales.firstFloor.pricePerSqm"
+  if (id==='investor.taxRate_pct') { state.investor.taxRate=val/100; render(); return; }
+  if (id==='fees.sellingCostRate') { state.fees.sellingCostRate=val/100; render(); return; }
+  if (id==='investor.count') { state.investor.count=Math.max(1,Math.round(val)); render(); return; }
   const keys = id.split('.');
   let cur = state;
   for (let i=0;i<keys.length-1;i++) cur=cur[keys[i]];
@@ -534,7 +814,6 @@ function applyValue(id, val) {
   render();
 }
 
-// ── boot ─────────────────────────────────────────────────────────────────────
 render();
 </script>
 </body>
