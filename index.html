@@ -611,12 +611,7 @@ function buildHTML(c, pp) {
       ${cardHTML('Capital Required',fmt(c.capitalForProject),'Upfront investment needed',C.sky,false)}
       ${cardHTML('Investor ROI (Gross)',pct(roi),'Return on capital',C.navy,true)}
     </div>
-    <div class="cards-grid" style="margin-bottom:20px">
-      ${cardHTML('FH Total Earnings',fmt(c.fhTotal),'Mgmt + sales commission',C.navy,false)}
-      ${cardHTML('SS Total Earnings',fmt(c.soulSpaceTotal),'Cost + sales commission','#0a7a6e',false)}
-      ${cardHTML('Entrepreneur Net',fmt((c.totalProfit-c.freshHoldings)*(1-d.investor.taxRate)),'After FH & tax',C.steel,false)}
-      ${cardHTML('Profit / Sales',pct(c.profitOverSales),'Net margin on revenue',C.steel,false)}
-    </div>
+
     <!-- Party Earnings Panels -->
     <div class="party-grid">
       <div class="party-panel party-fh">
